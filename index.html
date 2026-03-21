@@ -13,26 +13,31 @@
             color: #333;
             line-height: 1.6;
         }
+        
+        /* Navigation */
         nav {
             background-color: #2c3e50;
             color: white;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1rem 5%;
             position: sticky;
             top: 0;
             z-index: 100;
         }
         nav h1 { margin: 0; font-size: 1.5rem; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
         nav ul li { margin-left: 20px; }
-        nav ul li a { text-decoration: none; color: white; font-weight: 600; }
+        nav ul li a { text-decoration: none; color: white; font-weight: 600; font-size: 0.9rem; }
+
+        .container { max-width: 1100px; margin: auto; padding: 1rem; }
         
-        .container { max-width: 1100px; margin: auto; padding: 2rem; }
-        
+        /* Hero Section */
         #hero {
             display: flex;
+            flex-direction: row;
             align-items: center;
             background: white;
             padding: 2rem;
@@ -51,6 +56,7 @@
         #hero-text h1 { color: #2c3e50; margin-bottom: 0.5rem; }
         #hero-text p { font-size: 1.1rem; color: #7f8c8d; margin: 0.2rem 0; }
         
+        /* Sections */
         section {
             background: white;
             padding: 2rem;
@@ -60,15 +66,22 @@
         }
         section h2 { border-bottom: 2px solid #3498db; padding-bottom: 0.5rem; color: #2c3e50; }
         
-        .skills ul { padding-left: 1rem; list-style-type: square; }
+        /* Responsive Grid for Skills & AI */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skills ul { padding-left: 1.2rem; list-style-type: square; }
         .experience-item { margin-bottom: 1.5rem; }
-        .date { font-weight: bold; color: #7f8c8d; }
+        .date { font-weight: bold; color: #3498db; display: block; margin-bottom: 0.3rem; }
         
-        /* --- Gallery Styles --- */
+        /* Gallery */
         .image-gallery { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 1.5rem; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 1rem; 
             margin-top: 1rem;
         }
         .gallery-item {
@@ -78,20 +91,15 @@
             border-radius: 8px;
             background-color: #eee;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            cursor: pointer; /* Indicates it can be clicked */
+            cursor: pointer;
         }
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            display: block;
         }
-
-        /* 1. Hover Zoom Effect (Maintained) */
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        .gallery-item:hover img { transform: scale(1.1); }
 
         .gallery-caption {
             position: absolute;
@@ -100,49 +108,38 @@
             background: rgba(44, 62, 80, 0.9);
             color: white;
             padding: 8px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-align: center;
-            z-index: 10;
         }
 
-        /* --- 2. Full-screen Enlargement (Lightbox) Styles --- */
+        /* Lightbox Overlay */
         #gallery-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* Must be above everything */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-            cursor: zoom-out; /* Indicates how to close */
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; visibility: hidden;
+            transition: opacity 0.4s ease;
+            cursor: zoom-out;
         }
+        #gallery-overlay.active { opacity: 1; visibility: visible; }
+        #gallery-overlay img { max-width: 95%; max-height: 85%; border: 3px solid white; border-radius: 4px; }
 
-        #gallery-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #gallery-overlay img {
-            max-width: 90%;
-            max-height: 90%;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-            border-radius: 4px;
-            border: 3px solid white;
-        }
-
-        /* Prevent scrolling when the large image is open */
-        body.overlay-open {
-            overflow: hidden;
-        }
-
-        footer { text-align: center; padding: 2rem; background-color: #2c3e50; color: white; margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem; background-color: #2c3e50; color: white; }
         a { color: #3498db; text-decoration: none; }
+
+        /* --- MOBILE ADAPTATIONS --- */
+        @media (max-width: 768px) {
+            nav { justify-content: center; text-align: center; }
+            nav h1 { width: 100%; margin-bottom: 10px; }
+            nav ul { justify-content: center; }
+            nav ul li { margin: 5px 10px; }
+
+            #hero { flex-direction: column; text-align: center; }
+            #hero img { margin-right: 0; margin-bottom: 1.5rem; }
+            
+            section { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -158,67 +155,59 @@
     </ul>
 </nav>
 
-<div id="gallery-overlay">
-    <img src="" alt="Enlarged view">
-</div>
+<div id="gallery-overlay"><img src="" alt="Enlarged view"></div>
 
 <div class="container">
     <section id="hero">
-        <img src="unnikrishnan.jpg" alt="Unnikrishnan P R Profile Image">
+        <img src="unnikrishnan.jpg" alt="Unnikrishnan P R">
         <div id="hero-text">
             <h1>Unnikrishnan P R</h1>
             <p>Lead System Engineer | Infrastructure & AI Operations Specialist</p>
-            <p>10+ years driving efficiency through advanced Linux, VMware, Networking, and now integrating AI for smarter infrastructure.</p>
+            <p>10+ years driving efficiency through advanced Linux, VMware, Networking, and AI integration.</p>
         </div>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Experienced IT professional with a decade of expertise in managing complex IT operations, focusing on system and network administration. Currently, I am expanding my horizons into Industrial Training and Consultancy, leveraging my deep technical knowledge to empower teams and businesses.
-
-I specialize in the end-to-end technical life cycle: from scoping, planning, and risk management to the finalization of technical specifications, resource administration, and quality assurance. My strong problem-solving and decision-making skills lead to effective solutions that significantly enhance operational efficiency.</p>
+        <p>Experienced IT professional with a decade of expertise in managing complex IT operations, focusing on system and network administration. Currently expanding into Industrial Training and Consultancy, leveraging deep technical knowledge to empower teams and businesses.</p>
     </section>
 
     <section id="skills" class="skills">
         <h2>Core Competencies</h2>
-        <div style="display: flex; justify-content: space-between;">
+        <div class="grid-container">
             <div>
-                <h4>Core Technical Skills</h4>
+                <h4>Technical Skills</h4>
                 <ul>
                     <li>Linux & Windows Administration</li>
-                    <li>VMware Management</li>
-                    <li>Storage Configuration (Dell, Infortrend,GRAID,QNAP)</li>
-                    <li>Networking (VLAN, Routing, Firewall-SonicWALL/Fortinet, Mellanox-MLAG, BGP, VPN)</li>
-                    <li>Kubernetes in-house deployment with Spark</li>
-                    <li>Backup & Disaster Recovery Strategy</li>
-                    <li>SIME & SOAR using SecOps</li>
+                    <li>VMware & Storage (Dell, QNAP)</li>
+                    <li>Networking (VLAN, BGP, VPN)</li>
+                    <li>Kubernetes & Spark Deployment</li>
+                    <li>Backup & Disaster Recovery</li>
                 </ul>
             </div>
             <div>
-                <h4>Specializations & Consultancy</h4>
+                <h4>Specializations</h4>
                 <ul>
-                    <li>Infrastructure Redesign & Modernization</li>
-                    <li>Security & Compliance Auditing (Tenable)</li>
-                    <li>Endpoint Management (FortiGate EMS Integrated with Azure and YubiKey 2FA-FIDO)</li>
-                    <li>Industrial Training & Talent Development</li>
-                    <li>Strategic Technical Consultancy</li>
-                    <li>Cloud Environment Management (AWS, Rackspace, Google)</li>
+                    <li>Infrastructure Modernization</li>
+                    <li>Security Auditing (Tenable)</li>
+                    <li>Endpoint Management (FortiGate)</li>
+                    <li>Industrial Training & Consultancy</li>
+                    <li>Cloud (AWS, GCP, Rackspace)</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="ai-integration">
-        <h2>AI Platform Integration & Innovation</h2>
-        <p>Focused on integrating AI platforms to enhance monitoring, predictive maintenance, and operational efficiency.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <h2>AI Integration & Innovation</h2>
+        <div class="grid-container">
             <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
                 <h4 style="color: #4285F4;">Google AI Integration</h4>
-                <p>Exploratory work on leveraging Google AI models for smarter log analysis and anomaly detection.</p>
+                <p>Leveraging Google AI models for smarter log analysis and anomaly detection.</p>
             </div>
             <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
                 <h4 style="color: #34A853;">Vertex AI Implementation</h4>
-                <p>Developing MLOps workflows using Vertex AI for custom predictive resource allocation models.</p>
+                <p>Developing MLOps workflows for custom predictive resource allocation models.</p>
             </div>
         </div>
     </section>
@@ -230,75 +219,41 @@ I specialize in the end-to-end technical life cycle: from scoping, planning, and
             <h4>Krythium Solutions Pvt Ltd</h4>
             <p><strong>Lead System Engineer</strong></p>
             <ul>
-                <li>Datacenter redesign and Network redesign with redundancy (DELL N4000 and Mellanox MSN 2000).</li>
+                <li>Datacenter & Network redesign with redundancy.</li>
                 <li>Kubernetes cluster deployment for Spark.</li>
-                <li>Implemented SonicWALL, FortiGate, and DUO 2FA solutions.</li>
-                <li>Tenable audit, monthly patching, and Endpoint management.</li>
+                <li>Implemented SonicWALL & FortiGate security.</li>
             </ul>
         </div>
         <div class="experience-item">
             <span class="date">Jul '13 - Jan '14</span>
-            <h4>Alignminds Technologies Pvt Ltd</h4>
+            <h4>Alignminds Technologies</h4>
             <p><strong>Senior System Engineer</strong></p>
-            <ul>
-                <li>Set up and maintained hosting services.</li>
-                <li>Implemented Centralised Authentication (LDAP) and Server Monitoring (NAGIOS).</li>
-                <li>Managed security and firewall configurations.</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <span class="date">Sep '12 - Jul '13</span>
-            <h4>Alignminds Technologies Pvt Ltd</h4>
-            <p><strong>System Engineer</strong></p>
-        </div>
-        <div class="experience-item">
-            <span class="date">Aug '10 - Sep '12</span>
-            <h4>Alignminds Technologies Pvt Ltd</h4>
-            <p><strong>Technical Support</strong></p>
-        </div>
-        <div class="experience-item">
-            <span class="date">May '09 - June '10</span>
-            <h4>HCL Infosystems Ltd.</h4>
-            <p><strong>Associate Customer Engineer</strong></p>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Project Gallery / Visual Contributions</h2>
-        <p>Click on any image to enlarge.</p>
+        <h2>Project Gallery</h2>
+        <p>Tap an image to enlarge.</p>
         <div class="image-gallery">
             <div class="gallery-item">
-                <img src="google_1.jpg" alt="Google Cloud Next 25 Engagement">
-                <div class="gallery-caption">Google Cloud Next 25 Engagement</div>
+                <img src="google_1.jpg" alt="Google Cloud Next 25">
+                <div class="gallery-caption">Google Cloud Next 25</div>
             </div>
             <div class="gallery-item">
-                <img src="google_2.jpg" alt="Professional Networking at Tech Event">
-                <div class="gallery-caption">Professional Networking at Tech Event</div>
+                <img src="jain_class_1.jpeg" alt="Network Security Session">
+                <div class="gallery-caption">Expert Talk Session</div>
             </div>
             <div class="gallery-item">
-                <img src="jain_class_1.jpeg" alt="Expert Talk Session - Network Security">
-                <div class="gallery-caption">Expert Talk Session - Network Security</div>
-            </div>
-            <div class="gallery-item">
-                <img src="jain_class_2.jpeg" alt="Industrial Training Session'">
-                <div class="gallery-caption">Industrial Training Session</div>
+                <img src="jain_class_2.jpeg" alt="Industrial Training">
+                <div class="gallery-caption">Industrial Training</div>
             </div>
         </div>
     </section>
 
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>RHCE Certification on RHEL6 (Reg. 111-139-960)</li>
-            <li>CCNA, CCNA-Voice Certified (Reg. CSCO11783264)</li>
-            <li>Microsoft Certified Professional (C752-2385)</li>
-        </ul>
-    </section>
-
-    <section id="contact" class="contact">
+    <section id="contact">
         <h2>Contact</h2>
-        <p>E-Mail: <a href="mailto:unni.kpr@gmail.com">unni.kpr@gmail.com</a></p>
-        <p>Web: <a href="https://unniqueonnet.com" target="_blank">https://unniqueonnet.com</a></p>
+        <p>Email: <a href="mailto:unni.kpr@gmail.com">unni.kpr@gmail.com</a></p>
+        <p>Web: <a href="https://unniqueonnet.com" target="_blank">unniqueonnet.com</a></p>
     </section>
 </div>
 
@@ -311,28 +266,19 @@ I specialize in the end-to-end technical life cycle: from scoping, planning, and
         const galleryItems = document.querySelectorAll('.gallery-item');
         const overlay = document.getElementById('gallery-overlay');
         const overlayImg = overlay.querySelector('img');
-        const body = document.body;
 
-        // Open Lightbox
         galleryItems.forEach(item => {
             item.addEventListener('click', function() {
-                // Get the source of the clicked image
                 const clickedImg = this.querySelector('img');
-                const imgSrc = clickedImg.getAttribute('src');
-                const imgAlt = clickedImg.getAttribute('alt');
-
-                // Set the overlay image source and show it
-                overlayImg.setAttribute('src', imgSrc);
-                overlayImg.setAttribute('alt', imgAlt);
+                overlayImg.src = clickedImg.src;
                 overlay.classList.add('active');
-                body.classList.add('overlay-open'); // Prevent body scrolling
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        // Close Lightbox (when clicking anywhere on the overlay)
         overlay.addEventListener('click', function() {
             overlay.classList.remove('active');
-            body.classList.remove('overlay-open');
+            document.body.style.overflow = 'auto';
         });
     });
 </script>
