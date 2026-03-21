@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unnikrishnan P R - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav h1 { margin: 0; font-size: 1.5rem; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: white; font-weight: 600; }
+        
+        .container { max-width: 1100px; margin: auto; padding: 2rem; }
+        
+        #hero {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        #hero img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 2rem;
+        }
+        #hero-text h1 { color: #2c3e50; margin-bottom: 0.5rem; }
+        #hero-text p { font-size: 1.1rem; color: #7f8c8d; }
+        
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        section h2 { border-bottom: 2px solid #3498db; padding-bottom: 0.5rem; color: #2c3e50; }
+        
+        .skills ul { padding-left: 1rem; list-style-type: square; }
+        .experience-item { margin-bottom: 1.5rem; }
+        .date { font-weight: bold; color: #7f8c8d; }
+        
+        .contact p { margin: 0.5rem 0; }
+        
+        .image-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+        .image-gallery div { width: 100%; height: 150px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #888; border-radius: 4px; border: 1px dashed #bbb; }
+
+        footer { text-align: center; padding: 2rem; background-color: #2c3e50; color: white; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1>Unnikrishnan P R</h1>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <section id="hero">
+        <img src="unnikrishnan.jpg" alt="Unnikrishnan P R Profile Image">
+        <div id="hero-text">
+            <h1>Unnikrishnan P R</h1>
+            <p>Lead System Engineer | Infrastructure & AI Operations Specialist</p>
+            <p>10+ years driving efficiency through advanced Linux, VMware, Networking, and now integrating AI for smarter infrastructure.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Experienced IT professional with a decade of expertise in managing complex IT operations, focusing on system and network administration. Currently, I am expanding my horizons into Industrial Training and Consultancy, leveraging my deep technical knowledge to empower teams and businesses.</p>
+        <p>I specialize in the end-to-end technical life cycle: from scoping, planning, and risk management to the finalization of technical specifications, resource administration, and quality assurance. My strong problem-solving and decision-making skills lead to effective solutions that significantly enhance operational efficiency.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Core Competencies</h2>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <h4>Core Technical Skills</h4>
+                <ul>
+                    <li>Linux & Windows Administration</li>
+                    <li>VMware Management</li>
+                    <li>Storage Configuration (Dell, Infortrend)</li>
+                    <li>Networking (VLAN, Routing, Firewall-SonicWALL/Fortinet)</li>
+                    <li>Kubernetes in-house deployment with Spark</li>
+                    <li>Backup & Disaster Recovery Strategy</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specializations & Consultancy</h4>
+                <ul>
+                    <li>Infrastructure Redesign & Modernization</li>
+                    <li>Security & Compliance Auditing (Tenable)</li>
+                    <li>Endpoint Management (FortiGate EMS)</li>
+                    <li>Industrial Training & Talent Development</li>
+                    <li>Strategic Technical Consultancy</li>
+                    <li>Cloud Environment Management (AWS, Rackspace)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-integration">
+        <h2>AI Platform Integration & Innovation</h2>
+        <p>Recognizing the transformative potential of AI in IT infrastructure, I am focused on integrating leading AI platforms to enhance monitoring, predictive maintenance, and operational efficiency.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #4285F4;">Google AI Integration</h4>
+                <p>Exploratory work on leveraging Google AI models for smarter log analysis and anomaly detection in large-scale server environments.</p>
+            </div>
+            <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #34A853;">Vertex AI Implementation</h4>
+                <p>Developing workflows using Vertex AI for MLOps to deploy custom predictive models that optimize datacenter resource allocation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Organisational Experience</h2>
+        <div class="experience-item">
+            <span class="date">Feb '14 - Present</span>
+            <h4>Krythium Solutions Pvt Ltd</h4>
+            <p><strong>Lead System Engineer</strong></p>
+            <ul>
+                <li>Datacenter redesign and Network redesign with redundancy (DELL N4000 and Mellanox MSN 2000).</li>
+                <li>Kubernetes cluster deployment for Spark.</li>
+                <li>Implemented SonicWALL, FortiGate, and DUO 2FA solutions.</li>
+                <li>Tenable audit, monthly patching, and Endpoint management.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <span class="date">Jul '13 - Jan '14</span>
+            <h4>Alignminds Technologies Pvt Ltd</h4>
+            <p><strong>Senior System Engineer</strong></p>
+            <ul>
+                <li>Set up and maintained hosting services.</li>
+                <li>Implemented Centralised Authentication (LDAP) and Server Monitoring (NAGIOS).</li>
+                <li>Managed security and firewall configurations.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <span class="date">Sep '12 - Jul '13</span>
+            <h4>Alignminds Technologies Pvt Ltd</h4>
+            <p><strong>System Engineer</strong></p>
+        </div>
+        <div class="experience-item">
+            <span class="date">Aug '10 - Sep '12</span>
+            <h4>Alignminds Technologies Pvt Ltd</h4>
+            <p><strong>Technical Support</strong></p>
+        </div>
+        <div class="experience-item">
+            <span class="date">May '09 - June '10</span>
+            <h4>HCL Infosystems Ltd.</h4>
+            <p><strong>Associate Customer Engineer</strong></p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Project Gallery / Visual Contributions</h2>
+        <p>A placeholder for images of infrastructure projects, datacenter setups, network diagrams, and certifications.</p>
+        <div class="image-gallery">
+            <div><span>Datacenter Redesign Diagram</span></div>
+            <div><span>Network Topology Visual</span></div>
+            <div><span>Kubernetes Cluster Setup</span></div>
+            <div><span>Security Audit Sample</span></div>
+            <div><span>Storage Deployment Photo</span></div>
+            <div><span>Training Session Snapshot</span></div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>RHCE Certification on RHEL6 (Reg. 111-139-960)</li>
+            <li>CCNA, CCNA-Voice Certified (Reg. CSCO11783264)</li>
+            <li>Microsoft Certified Professional (C752-2385)</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <p>E-Mail: <a href="mailto:unni.kpr@gmail.com">unni.kpr@gmail.com</a></p>
+        <p>Web: <a href="https://unniqueonnet.com" target="_blank">https://unniqueonnet.com</a></p>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Unnikrishnan P R. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
