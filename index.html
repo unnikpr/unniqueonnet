@@ -11,6 +11,7 @@
             margin: 0;
             background-color: #f4f7f6;
             color: #333;
+            line-height: 1.6;
         }
         nav {
             background-color: #2c3e50;
@@ -45,9 +46,10 @@
             height: 150px;
             object-fit: cover;
             margin-right: 2rem;
+            border: 3px solid #3498db;
         }
         #hero-text h1 { color: #2c3e50; margin-bottom: 0.5rem; }
-        #hero-text p { font-size: 1.1rem; color: #7f8c8d; }
+        #hero-text p { font-size: 1.1rem; color: #7f8c8d; margin: 0.2rem 0; }
         
         section {
             background: white;
@@ -62,12 +64,85 @@
         .experience-item { margin-bottom: 1.5rem; }
         .date { font-weight: bold; color: #7f8c8d; }
         
-        .contact p { margin: 0.5rem 0; }
-        
-        .image-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-        .image-gallery div { width: 100%; height: 150px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #888; border-radius: 4px; border: 1px dashed #bbb; }
+        /* --- Gallery Styles --- */
+        .image-gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 1rem;
+        }
+        .gallery-item {
+            position: relative;
+            height: 200px;
+            overflow: hidden; 
+            border-radius: 8px;
+            background-color: #eee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer; /* Indicates it can be clicked */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        /* 1. Hover Zoom Effect (Maintained) */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* --- 2. Full-screen Enlargement (Lightbox) Styles --- */
+        #gallery-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Must be above everything */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            cursor: zoom-out; /* Indicates how to close */
+        }
+
+        #gallery-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #gallery-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            border: 3px solid white;
+        }
+
+        /* Prevent scrolling when the large image is open */
+        body.overlay-open {
+            overflow: hidden;
+        }
 
         footer { text-align: center; padding: 2rem; background-color: #2c3e50; color: white; margin-top: 2rem; }
+        a { color: #3498db; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -83,20 +158,25 @@
     </ul>
 </nav>
 
+<div id="gallery-overlay">
+    <img src="" alt="Enlarged view">
+</div>
+
 <div class="container">
     <section id="hero">
         <img src="unnikrishnan.jpg" alt="Unnikrishnan P R Profile Image">
         <div id="hero-text">
             <h1>Unnikrishnan P R</h1>
-            <p>Lead System Engineer | Infrastructure & AI Operations Integration Specialist</p>
-            <p>10+ years driving efficiency through advanced Linux, VMware,K8S, Networking, and now integrating AI for smarter infrastructure.</p>
+            <p>Lead System Engineer | Infrastructure & AI Operations Specialist</p>
+            <p>10+ years driving efficiency through advanced Linux, VMware, Networking, and now integrating AI for smarter infrastructure.</p>
         </div>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Experienced IT professional with a decade of expertise in managing complex IT operations, focusing on system and network administration. Currently, I am expanding my horizons into Industrial Training and Consultancy, leveraging my deep technical knowledge to empower teams and businesses.</p>
-        <p>I specialize in the end-to-end technical life cycle: from scoping, planning, and risk management to the finalization of technical specifications, resource administration, and quality assurance. My strong problem-solving and decision-making skills lead to effective solutions that significantly enhance operational efficiency.</p>
+        <p>Experienced IT professional with a decade of expertise in managing complex IT operations, focusing on system and network administration. Currently, I am expanding my horizons into Industrial Training and Consultancy, leveraging my deep technical knowledge to empower teams and businesses.
+
+I specialize in the end-to-end technical life cycle: from scoping, planning, and risk management to the finalization of technical specifications, resource administration, and quality assurance. My strong problem-solving and decision-making skills lead to effective solutions that significantly enhance operational efficiency.</p>
     </section>
 
     <section id="skills" class="skills">
@@ -130,15 +210,15 @@
 
     <section id="ai-integration">
         <h2>AI Platform Integration & Innovation</h2>
-        <p>Recognizing the transformative potential of AI in IT infrastructure, I am focused on integrating leading AI platforms to enhance monitoring, predictive maintenance, and operational efficiency.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <p>Focused on integrating AI platforms to enhance monitoring, predictive maintenance, and operational efficiency.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
             <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
                 <h4 style="color: #4285F4;">Google AI Integration</h4>
-                <p>Exploratory work on leveraging Google AI models for smarter log analysis and anomaly detection in large-scale server environments.</p>
+                <p>Exploratory work on leveraging Google AI models for smarter log analysis and anomaly detection.</p>
             </div>
             <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px;">
                 <h4 style="color: #34A853;">Vertex AI Implementation</h4>
-                <p>Developing workflows using Vertex AI for MLOps to deploy custom predictive models that optimize datacenter resource allocation.</p>
+                <p>Developing MLOps workflows using Vertex AI for custom predictive resource allocation models.</p>
             </div>
         </div>
     </section>
@@ -185,14 +265,24 @@
 
     <section id="projects">
         <h2>Project Gallery / Visual Contributions</h2>
-        <p>A placeholder for images of infrastructure projects, datacenter setups, network diagrams, and certifications.</p>
+        <p>Click on any image to enlarge.</p>
         <div class="image-gallery">
-            <div><span>Datacenter Redesign Diagram</span></div>
-            <div><span>Network Topology Visual</span></div>
-            <div><span>Kubernetes Cluster Setup</span></div>
-            <div><span>Security Audit Sample</span></div>
-            <div><span>Storage Deployment Photo</span></div>
-            <div><span>Training Session Snapshot</span></div>
+            <div class="gallery-item">
+                <img src="google_1.jpg" alt="Google Cloud Next 25 Engagement">
+                <div class="gallery-caption">Google Cloud Next 25 Engagement</div>
+            </div>
+            <div class="gallery-item">
+                <img src="google_2.jpg" alt="Professional Networking at Tech Event">
+                <div class="gallery-caption">Professional Networking at Tech Event</div>
+            </div>
+            <div class="gallery-item">
+                <img src="jain_class_1.jpeg" alt="Expert Talk Session - Network Security">
+                <div class="gallery-caption">Expert Talk Session - Network Security</div>
+            </div>
+            <div class="gallery-item">
+                <img src="jain_class_2.jpeg" alt="Industrial Training Session'">
+                <div class="gallery-caption">Industrial Training Session</div>
+            </div>
         </div>
     </section>
 
@@ -213,8 +303,39 @@
 </div>
 
 <footer>
-    <p>&copy; 2024 Unnikrishnan P R. All Rights Reserved.</p>
+    <p>&copy; 2026 Unnikrishnan P R. All Rights Reserved.</p>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const overlay = document.getElementById('gallery-overlay');
+        const overlayImg = overlay.querySelector('img');
+        const body = document.body;
+
+        // Open Lightbox
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Get the source of the clicked image
+                const clickedImg = this.querySelector('img');
+                const imgSrc = clickedImg.getAttribute('src');
+                const imgAlt = clickedImg.getAttribute('alt');
+
+                // Set the overlay image source and show it
+                overlayImg.setAttribute('src', imgSrc);
+                overlayImg.setAttribute('alt', imgAlt);
+                overlay.classList.add('active');
+                body.classList.add('overlay-open'); // Prevent body scrolling
+            });
+        });
+
+        // Close Lightbox (when clicking anywhere on the overlay)
+        overlay.addEventListener('click', function() {
+            overlay.classList.remove('active');
+            body.classList.remove('overlay-open');
+        });
+    });
+</script>
 
 </body>
 </html>
