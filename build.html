@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Website Portal</title>
+    <title>Onam Festival Portal</title>
     <style>
-        .iframe-wrapper {
+        /* Remove default margins and prevent double scrollbars */
+        html, body {
+            margin: 0;
+            padding: 0;
             width: 100%;
-            max-width: 500px;
-            margin: 40px auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            height: 100%;
+            overflow: hidden; 
+            background-color: #fdfaf2; /* Matches the inner form theme background */
         }
+
+        /* Responsive full-bleed container */
+        .fullscreen-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Seamless full-bleed iframe integration */
         iframe {
             width: 100%;
-            height: 750px; /* Provides ample breathing room for the modal window contents */
+            height: 100%;
             border: none;
+            flex-grow: 1;
             display: block;
         }
     </style>
 </head>
 <body>
 
-    <!-- Embedded Form Section -->
-    <div class="iframe-wrapper">
-        <iframe src="https://script.google.com/macros/s/AKfycbzonLElnAs__IwBfjsati64n7GlP13tp7kjuBELcwNpOCosGrakMG7tj-tuoHqI5akEXw/exec"></iframe>
+    <div class="fullscreen-container">
+        <!-- Paste your exact Apps Script Web App Deployment URL in the src attribute below -->
+        <iframe src="https://script.google.com/macros/s/AKfycbzonLElnAs__IwBfjsati64n7GlP13tp7kjuBELcwNpOCosGrakMG7tj-tuoHqI5akEXw/exec" allow="autoplay"></iframe>
     </div>
 
 </body>
